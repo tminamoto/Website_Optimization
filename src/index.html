@@ -6,10 +6,26 @@
     <meta name="description" content="Porfolio">
     <meta name="author" content="Cameron Pittman">
     <title>Cameron Pittman: Portfolio</title>
-    <link href="css/style.css" rel="stylesheet">
     <link href="css/print.css" rel="stylesheet" media="print">
 
+    <noscript id="deferred-styles">
+      <link href="css/style.css" rel="stylesheet">
+    </noscript>
     <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+    <script async>
       WebFontConfig = {
             google: {
             families: ['Open Sans:400,700']
@@ -31,7 +47,7 @@
       ga('send', 'pageview');
     </script>
     <script async src="http://www.google-analytics.com/analytics.js"></script>
-    <script async src="js/perfmatters.js"></script>
+    <script async src="s/perfmatters.js"></script>
 
   </head>
 
